@@ -1,18 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
+  --text: #000000;
+  --text-h: #000000;
+  --bg: #e8f4f8;
+  --border: #a8d8ea;
+  --code-bg: #d4f1f4;
+  --accent: #2ecc71;
+  --accent-bg: rgba(46, 204, 113, 0.1);
+  --accent-border: rgba(46, 204, 113, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -32,14 +34,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
+    --text: #000000;
+    --text-h: #000000;
+    --bg: #0a3d52;
+    --border: #1a5f7a;
+    --code-bg: #0f5a73;
+    --accent: #27ae60;
+    --accent-bg: rgba(39, 174, 96, 0.15);
+    --accent-border: rgba(39, 174, 96, 0.5);
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
@@ -59,18 +61,19 @@ body {
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+  padding: 20px;
 }
 
 h1,
 h2 {
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
+  color: white;
 }
 
 h1 {
@@ -91,8 +94,13 @@ h2 {
     font-size: 20px;
   }
 }
+h3 {
+  color: white;
+  margin: 0;
+}
 p {
   margin: 0;
+  color: black;
 }
 
 code,
@@ -100,7 +108,7 @@ code,
   font-family: var(--mono);
   display: inline-flex;
   border-radius: 4px;
-  color: var(--text-h);
+  color: black;
 }
 
 code {

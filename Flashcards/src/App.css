@@ -29,15 +29,15 @@
 .card-count {
   margin: 0;
   font-size: 18px;
-  color: var(--text-h);
+  color: white;
 }
 
 .flashcard {
   width: min(420px, 90vw);
   height: 220px;
   border-radius: 20px;
-  border: 2px solid var(--border);
-  background: var(--surface);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  background: white;
   color: var(--text-h);
   display: grid;
   place-items: center;
@@ -45,7 +45,7 @@
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .flashcard:hover {
@@ -59,18 +59,20 @@
 }
 
 .next-card {
-  padding: 10px 18px;
+  padding: 12px 24px;
   border-radius: 999px;
   border: none;
-  background: var(--accent);
-  color: var(--button-text, #fff);
+  background: #3498db;
+  color: white;
   cursor: pointer;
   font-size: 16px;
-  transition: background 0.2s ease;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .next-card:hover {
-  background: var(--accent-hover, #0050b3);
+  background: #2980b9;
+  transform: scale(1.05);
 }
 
 .hero {
@@ -237,4 +239,12 @@
     right: 0;
     border-right-color: var(--border);
   }
+}
+
+/* Page background */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7fbff 0%, #e6f0ff 50%, #f0f7ff 100%);
+  color: var(--text-h);
 }
