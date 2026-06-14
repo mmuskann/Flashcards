@@ -18,12 +18,36 @@ function App() {
     { question: 'How do you say "hello" in Hindi?', answer: 'नमस्ते (Namaste)' }
   ];
 
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const currentCard = cardPairs[currentCardIndex];
+
+  const toggleFlip = () => setIsFlipped((prev) => !prev);
+  const nextCard = () => {
+    setCurrentCardIndex(Math.floor(Math.random() * cardPairs.length));
+    setIsFlipped(false);
+  };
+  
   return (
 
     <div className="App"> 
       <h1>Hello Across The World</h1>
       <h2>Do you know how to say "hello" in different languages? Test your skills here!</h2>
       <h3>Number of cards: {cardPairs.length}</h3>
+
+      <div className="flashcard-area">
+        
+        <div className="flashcard" onClick={toggleFlip}>
+          <div className={`flashcard-face ${isFlipped ? 'back' : 'front'}`}>
+            {isFlipped ? currentCard.answer : currentCard.question}
+          </div>
+        </div>
+
+        <button className="next-card" onClick={nextCard}>
+          Next Card
+        </button>
+
+      </div>
     </div>
   );
 
