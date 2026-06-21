@@ -248,3 +248,11 @@ body {
   background: linear-gradient(135deg, #f7fbff 0%, #e6f0ff 50%, #f0f7ff 100%);
   color: var(--text-h);
 }
+
+.correct {
+  background:green;
+}
+
+.incorrect {
+  background:red;
+}

@@ -24,6 +24,7 @@ function App() {
   const [noNextCard, setNoNextCard] = useState(false);
   const [noPreviousCard, setNoPreviousCard] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
+  const [answerStatus, setAnswerStatus] = useState(null);
 
   const toggleFlip = () => setIsFlipped((prev) => !prev);
   const nextCard = () => {
@@ -52,17 +53,19 @@ function App() {
   };
 
   const handleUserAnswerChange = (e) => {
-    setUserAnswer((prev) => [...prev, e.target.value]);
+    setUserAnswer(e.target.value);
+    setAnswerStatus(null);
   }
 
-  const handleSumbit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if ((userAnswer.toLowerCase() === currentCard.answer.toLowerCase)){
-      
+    if ((userAnswer.toLowerCase() === currentCard.answer.toLowerCase())){
+      setAnswerStatus('correct');
     } else {
-      
+      setAnswerStatus('incorrect');
     }
-  
+  }
+
   return (
 
     <div className="App"> 
@@ -79,11 +82,11 @@ function App() {
         </div>
 
         <div className="guess-area">
-          <form>
+          <form onSubmit={handleSubmit}>
             <label>Answer: 
-              <input type="text" placeholder="Type your answer here..." value={userAnswer} onChange={handleUserAnswerChange} />
+              <input type="text" placeholder="Type your answer here..." value={userAnswer} onChange={handleUserAnswerChange} className={answerStatus}/>
             </label>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <button type="submit">Submit</button>
           </form>
         </div>
 
@@ -101,4 +104,4 @@ function App() {
 
 };
 
-export default App;
+export default App
