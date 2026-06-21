@@ -21,23 +21,47 @@ function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const currentCard = cardPairs[currentCardIndex];
+  const [noNextCard, setNoNextCard] = useState(false);
+  const [noPreviousCard, setNoPreviousCard] = useState(false);
+  const [userAnswer, setUserAnswer] = useState('');
 
   const toggleFlip = () => setIsFlipped((prev) => !prev);
   const nextCard = () => {
+    if (currentCardIndex + 1 === cardPairs.length) {
+      setNoNextCard(true);
+    } else {
+      setCurrentCardIndex((prev) => (prev + 1));
+      setNoNextCard(false);
+    }
+    setIsFlipped(false);
+  }
+
+  const previousCard = () => {
+    if (currentCardIndex === 0) {
+      setNoPreviousCard(true);
+    } else {
+      setCurrentCardIndex((prev) => (prev - 1));
+      setNoPreviousCard(false);
+    }
+    setIsFlipped(false);
+  }
+
+  const nextCardRandom = () => {
     setCurrentCardIndex(Math.floor(Math.random() * cardPairs.length));
     setIsFlipped(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const userAnswer = e.target.elements[0].value.trim();
-    if (userAnswer.toLowerCase() === currentCard.answer.toLowerCase()) {
-      alert('Correct!');
-    } else {
-      alert(`Incorrect! The correct answer is: ${currentCard.answer}`);
-    }
-    
+  const handleUserAnswerChange = (e) => {
+    setUserAnswer((prev) => [...prev, e.target.value]);
   }
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    if ((userAnswer.toLowerCase() === currentCard.answer.toLowerCase)){
+      
+    } else {
+      
+    }
   
   return (
 
@@ -57,19 +81,18 @@ function App() {
         <div className="guess-area">
           <form>
             <label>Answer: 
-              <input type="text" placeholder="Type your answer here..." />
+              <input type="text" placeholder="Type your answer here..." value={userAnswer} onChange={handleUserAnswerChange} />
             </label>
-            <submit onClick={handleSubmit}><button>Submit</button></submit>
-
+            <button type="submit" onClick={handleSubmit}>Submit</button>
           </form>
         </div>
 
         <div className="forward and backward buttons">
-          <button onClick={() => setCurrentCardIndex((prev) => (prev - 1 + cardPairs.length) % cardPairs.length)}>←</button>
+          <button onClick={previousCard}>←</button>
           <button onClick={nextCard}>→</button>
         </div>
-        <button className="next-card" onClick={nextCard}>
-          Next Card
+        <button className="next-card" onClick={nextCardRandom}>
+          Shuffle Cards
         </button>
 
       </div>
