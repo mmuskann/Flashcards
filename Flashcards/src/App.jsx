@@ -27,6 +27,17 @@ function App() {
     setCurrentCardIndex(Math.floor(Math.random() * cardPairs.length));
     setIsFlipped(false);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userAnswer = e.target.elements[0].value.trim();
+    if (userAnswer.toLowerCase() === currentCard.answer.toLowerCase()) {
+      alert('Correct!');
+    } else {
+      alert(`Incorrect! The correct answer is: ${currentCard.answer}`);
+    }
+    
+  }
   
   return (
 
@@ -43,6 +54,20 @@ function App() {
           </div>
         </div>
 
+        <div className="guess-area">
+          <form>
+            <label>Answer: 
+              <input type="text" placeholder="Type your answer here..." />
+            </label>
+            <submit onClick={handleSubmit}><button>Submit</button></submit>
+
+          </form>
+        </div>
+
+        <div className="forward and backward buttons">
+          <button onClick={() => setCurrentCardIndex((prev) => (prev - 1 + cardPairs.length) % cardPairs.length)}>←</button>
+          <button onClick={nextCard}>→</button>
+        </div>
         <button className="next-card" onClick={nextCard}>
           Next Card
         </button>
