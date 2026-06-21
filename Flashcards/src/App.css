@@ -256,3 +256,8 @@ body {
 .incorrect {
   background:red;
 }
+
+.edge-button {
+  background-color: red;
+  color: white;
+}

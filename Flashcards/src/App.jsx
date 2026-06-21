@@ -1,7 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
@@ -9,40 +6,37 @@ function App() {
     { question: 'How do you say "hello" in Spanish?', answer: 'Hola' },
     { question: 'How do you say "hello" in French?', answer: 'Bonjour' },
     { question: 'How do you say "hello" in German?', answer: 'Hallo' },
-    { question: 'How do you say "hello" in Japanese?', answer: 'こんにちは (Konnichiwa)' },
+    { question: 'How do you say "hello" in Japanese?', answer: 'Konnichiwa' },
     { question: 'How do you say "hello" in Italian?', answer: 'Ciao' },
     { question: 'How do you say "hello" in Portuguese?', answer: 'Olá' },
-    { question: 'How do you say "hello" in Mandarin Chinese?', answer: '你好 (Nǐ hǎo)' },
-    { question: 'How do you say "hello" in Russian?', answer: 'Здравствуйте (Zdravstvuyte)' },
-    { question: 'How do you say "hello" in Arabic?', answer: 'مرحبا (Marhaba)' },
-    { question: 'How do you say "hello" in Hindi?', answer: 'नमस्ते (Namaste)' }
+    { question: 'How do you say "hello" in Mandarin Chinese?', answer: 'Nǐ hǎo' },
+    { question: 'How do you say "hello" in Russian?', answer: 'Zdravstvuyte' },
+    { question: 'How do you say "hello" in Arabic?', answer: 'Marhaba' },
+    { question: 'How do you say "hello" in Hindi?', answer: 'Namaste' }
   ];
 
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const currentCard = cardPairs[currentCardIndex];
-  const [noNextCard, setNoNextCard] = useState(false);
-  const [noPreviousCard, setNoPreviousCard] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
   const [answerStatus, setAnswerStatus] = useState(null);
+  const isFirstCard = currentCardIndex === 0;
+  const isLastCard = currentCardIndex === cardPairs.length - 1;
 
   const toggleFlip = () => setIsFlipped((prev) => !prev);
+
   const nextCard = () => {
     if (currentCardIndex + 1 === cardPairs.length) {
-      setNoNextCard(true);
     } else {
       setCurrentCardIndex((prev) => (prev + 1));
-      setNoNextCard(false);
     }
     setIsFlipped(false);
   }
 
   const previousCard = () => {
     if (currentCardIndex === 0) {
-      setNoPreviousCard(true);
     } else {
       setCurrentCardIndex((prev) => (prev - 1));
-      setNoPreviousCard(false);
     }
     setIsFlipped(false);
   }
@@ -91,11 +85,11 @@ function App() {
         </div>
 
         <div className="forward and backward buttons">
-          <button onClick={previousCard}>←</button>
-          <button onClick={nextCard}>→</button>
+          <button onClick={previousCard} className={isFirstCard ? "edge-button" : ""}>←</button>
+          <button onClick={nextCard} className={isLastCard ? "edge-button" : ""}>→</button>
         </div>
         <button className="next-card" onClick={nextCardRandom}>
-          Shuffle Cards
+          Go To Random Card
         </button>
 
       </div>
