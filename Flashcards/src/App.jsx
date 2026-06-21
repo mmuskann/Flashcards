@@ -80,7 +80,7 @@ function App() {
             <label>Answer: 
               <input type="text" placeholder="Type your answer here..." value={userAnswer} onChange={handleUserAnswerChange} className={answerStatus}/>
             </label>
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={isFlipped}>Submit</button>
           </form>
         </div>
 
